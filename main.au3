@@ -4,7 +4,7 @@
  Author:         TheAlienDoctor
 
  Script Function:
-	Template AutoIt script.
+	A profile switcher for Minecraft Bedrock. Compatible with 1.21.120+.
 
 #ce ----------------------------------------------------------------------------
 
