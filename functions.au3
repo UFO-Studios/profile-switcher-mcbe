@@ -42,7 +42,6 @@ Func getComMojangDir()
 EndFunc   ;==>getComMojangDir
 
 Func loadProfile()
-
 	Local $defaultComMojang_packs = FileGetAttrib($comMojang_packs & "\com.mojang")
 	If $defaultComMojang_packs = "D" Then ; Default com.mojang folder still exists
 		DirMove($comMojang_packs & "\com.mojang", $comMojang_packs & "\com.mojang_default")
@@ -68,13 +67,42 @@ Func loadProfile()
 
 	$loadedProfile = $selectedProfile
 	$loadedProfileDir = _GetReparseTarget($comMojang & "\com.mojang")
-    IniWrite("data.ini", "Data", "loadedProfile", $loadedProfile)
-    IniWrite("data.ini", "Data", "loadedProfileDir", $loadedProfileDir)
+	IniWrite("data.ini", "Data", "loadedProfile", $loadedProfile)
+	IniWrite("data.ini", "Data", "loadedProfileDir", $loadedProfileDir)
 EndFunc   ;==>loadProfile
 
 Func launchMinecraft()
+	Run(getMinecraftFilePath(0))
+EndFunc   ;==>launchMinecraft
 
-EndFunc
+Func getMinecraftFilePath($preview) ; Search all the drives to find Minecraft installation
+Local $filePath = ""
+
+	If $preview = 1 Then
+		$filePath = "XboxGames\Minecraft for Windows\Content\Minecraft.Windows.exe"
+	ElseIf $preview = 0 Then
+		$filePath = "XboxGames\Minecraft for Windows\Content\Minecraft.Windows.exe"
+	EndIf
+	Local $drives = DriveGetDrive("ALL")
+
+	; Loop through each drive
+	For $i = 1 To $drives[0]
+		Local $drive = $drives[$i]
+
+		; Check if drive is ready (avoid empty CD or network drive delays)
+		If DriveStatus($drive) = "READY" Then
+			Local $fullPath = $drive & "\" & $filePath
+			If FileExists($fullPath) Then
+				Return $fullPath
+			EndIf
+		EndIf
+	Next
+
+	; Not found
+	MsgBox(0, $gui_title, "Could not find Minecraft installed.")
+	Return ""
+EndFunc   ;==>getMinecraftFilePath
+
 
 ; Parameter(s):     $qLink              = The file or directory you want to create.
 ;                   $qTarget            = The location $qLink should link to.

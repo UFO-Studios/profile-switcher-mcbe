@@ -57,6 +57,9 @@ While 1
 		Case $gui_selectProfileBtn
 			loadProfile()
 
+		Case $gui_launchMc
+			launchMinecraft()
+
 		Case $GUI_EVENT_CLOSE
 			Exit
 	EndSwitch
