@@ -42,6 +42,8 @@ Func getComMojangDir()
 EndFunc   ;==>getComMojangDir
 
 Func loadProfile()
+	disableGUI()
+
 	Local $defaultComMojang_packs = FileGetAttrib($comMojang_packs & "\com.mojang")
 	If $defaultComMojang_packs = "D" Then ; Default com.mojang folder still exists
 		DirMove($comMojang_packs & "\com.mojang", $comMojang_packs & "\com.mojang_default")
@@ -69,10 +71,27 @@ Func loadProfile()
 	$loadedProfileDir = _GetReparseTarget($comMojang & "\com.mojang")
 	IniWrite("data.ini", "Data", "loadedProfile", $loadedProfile)
 	IniWrite("data.ini", "Data", "loadedProfileDir", $loadedProfileDir)
+
+	enableGUI()
+GUICtrlSetData($gui_loadedProfileLabel, "Loaded Profile: " & $loadedProfile)
 EndFunc   ;==>loadProfile
 
+Func checkLoadedProfile() ; Not working yet. Doesn't seem to be disabling the GUI when running in AdLib.
+	$selectedProfile = GUICtrlRead($gui_profileList)
+	$loadedProfile = IniRead(@ScriptDir & "\data.ini", "data", "loadedProfile", "")
+
+	If $loadedProfile = $selectedProfile Then
+		GUISetState($gui_selectProfileBtn, $GUI_DISABLE)
+	Else
+		GUISetState($gui_selectProfileBtn, $GUI_ENABLE)
+	EndIf
+EndFunc
+
 Func launchMinecraft()
+	disableGUI()
 	Run(getMinecraftFilePath(0))
+	Sleep(5000)
+	enableGUI()
 EndFunc   ;==>launchMinecraft
 
 Func getMinecraftFilePath($preview) ; Search all the drives to find Minecraft installation
@@ -103,6 +122,19 @@ Local $filePath = ""
 	Return ""
 EndFunc   ;==>getMinecraftFilePath
 
+Func disableGUI()
+	GUICtrlSetState($gui_profileList, $GUI_DISABLE)
+	GUICtrlSetState($gui_selectProfileBtn, $GUI_DISABLE)
+	GUICtrlSetState($gui_launchMinecraftBtn, $GUI_DISABLE)
+	GUICtrlSetState($gui_importDefaultProfile, $GUI_DISABLE)
+EndFunc
+
+Func enableGUI()
+		GUICtrlSetState($gui_profileList, $GUI_ENABLE)
+	GUICtrlSetState($gui_selectProfileBtn, $GUI_ENABLE)
+	GUICtrlSetState($gui_launchMinecraftBtn, $GUI_ENABLE)
+	GUICtrlSetState($gui_importDefaultProfile, $GUI_ENABLE)
+EndFunc
 
 ; Parameter(s):     $qLink              = The file or directory you want to create.
 ;                   $qTarget            = The location $qLink should link to.
