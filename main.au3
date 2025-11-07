@@ -13,13 +13,13 @@
 
 ; Compile Settings
 #pragma compile(Compatibility, XP, vista, win7, win8, win81, win10, win11)
-#pragma compile(FileDescription, BDS Companion)
-#pragma compile(ProductName, BDS Companion)
-#pragma compile(ProductVersion, 1.0.2)
-#pragma compile(FileVersion, 1.0.2)
+#pragma compile(FileDescription, A profile switcher for Minecraft Bedrock. Compatible with 1.21.120+)
+#pragma compile(ProductName, Alien's Profile Switcher for Minecraft Bedrock)
+#pragma compile(ProductVersion, 0.1.0)
+#pragma compile(FileVersion, 0.1.0)
 #pragma compile(LegalCopyright, ©UFO Studios)
 #pragma compile(CompanyName, UFO Studios)
-#pragma compile(OriginalFilename, BDS-Companion-V1.0.2.exe)
+#pragma compile(OriginalFilename, ProfileSwitcher-B0.1.0.exe)
 
 ; Variables
 Global $versionNum = "B0.1.0"
