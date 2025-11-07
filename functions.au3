@@ -42,6 +42,16 @@ Func getComMojangDir()
 EndFunc   ;==>getComMojangDir
 
 Func loadProfile()
+	Local $selectedProfile = GUICtrlRead($gui_profileList)
+	
+	If $selectedProfile = $loadedProfile Then ; Check if profile is already loaded
+		$confirm = MsgBox(1, $gui_title, "That profile is already loaded. Would you like to reload it?") 
+		If $confirm = 2 Then
+			Return
+		EndIf
+	EndIf
+		
+
 	disableGUI()
 
 	Local $defaultComMojang_packs = FileGetAttrib($comMojang_packs & "\com.mojang")
@@ -53,8 +63,6 @@ Func loadProfile()
 	If $defaultComMojang = "D" Then ; Default com.mojang folder still exists
 		DirMove($comMojang & "\com.mojang", $comMojang & "\com.mojang_default")
 	EndIf
-
-	Local $selectedProfile = GUICtrlRead($gui_profileList)
 
 	If checkSymLink($comMojang & "\com.mojang") = True Then ; Update SymLink
 		DirRemove($comMojang & "\com.mojang") ; Delete symlink so we can recreate it

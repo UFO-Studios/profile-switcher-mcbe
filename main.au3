@@ -37,7 +37,7 @@ Global $comMojang = getComMojangDir()
 ; Copy paste below so GUI starts centered, because Koda doesn't let us do it automatically :(
 ; Global $gui = GUICreate("" & $gui_title & "", 370, 138)
 #Region ### START Koda GUI section ### Form=d:\06 code\profile-switcher-mcbe\gui.kxf
-Global $gui = GUICreate("" & $gui_title & "", 370, 138, 1030, 696)
+Global $gui = GUICreate("" & $gui_title & "", 370, 138)
 Global $gui_profileList = GUICtrlCreateCombo("", 16, 32, 337, 25, BitOR($CBS_DROPDOWNLIST,$CBS_AUTOHSCROLL))
 Global $gui_selectProfileBtn = GUICtrlCreateButton("Select Profile", 16, 72, 75, 25)
 Global $gui_launchMinecraftBtn = GUICtrlCreateButton("Launch Minecraft", 264, 72, 91, 25)
