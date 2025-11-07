@@ -11,7 +11,19 @@
 #include "functions.au3"
 #RequireAdmin
 
+; Compile Settings
+#pragma compile(Compatibility, XP, vista, win7, win8, win81, win10, win11)
+#pragma compile(FileDescription, BDS Companion)
+#pragma compile(ProductName, BDS Companion)
+#pragma compile(ProductVersion, 1.0.2)
+#pragma compile(FileVersion, 1.0.2)
+#pragma compile(LegalCopyright, ©UFO Studios)
+#pragma compile(CompanyName, UFO Studios)
+#pragma compile(OriginalFilename, BDS-Companion-V1.0.2.exe)
+
 ; Variables
+Global $versionNum = "B0.1.0"
+Global $copyright = "© UFO Studios 2025"
 Global $gui_title = "Alien's MCBE Profile Switcher"
 
 Global $profileFolder = @ScriptDir & "\Profiles"
@@ -23,10 +35,14 @@ Global $comMojang = getComMojangDir()
 
 ; GUI
 #Region ### START Koda GUI section ### Form=d:\06 code\profile-switcher-mcbe\gui.kxf
-Global $gui = GUICreate("" & $gui_title & "", 373, 110, 1044, 660)
-Global $gui_profileList = GUICtrlCreateCombo("", 16, 24, 337, 25, BitOR($CBS_DROPDOWN,$CBS_AUTOHSCROLL))
-Global $gui_selectProfileBtn = GUICtrlCreateButton("Select Profile", 16, 64, 75, 25)
-Global $gui_launchMc = GUICtrlCreateButton("Launch Minecraft", 96, 64, 91, 25)
+Global $gui = GUICreate("" & $gui_title & "", 370, 138, 1044, 660)
+Global $gui_profileList = GUICtrlCreateCombo("", 16, 40, 337, 25, BitOR($CBS_DROPDOWN,$CBS_AUTOHSCROLL))
+Global $gui_selectProfileBtn = GUICtrlCreateButton("Select Profile", 16, 72, 75, 25)
+Global $gui_launchMc = GUICtrlCreateButton("Launch Minecraft", 264, 72, 91, 25)
+Global $gui_importDefaultProfile = GUICtrlCreateButton("Import Default Profile", 96, 72, 107, 25)
+Global $gui_VersionNumLabel = GUICtrlCreateLabel("Version: " & $versionNum & "", 224, 112, 133, 17, $SS_RIGHT)
+Global $gui_copyright = GUICtrlCreateLabel("" & $copyright & "", 16, 112, 119, 17)
+Global $gui_selectProfileLabel = GUICtrlCreateLabel("Select Profile:", 16, 8, 69, 17)
 GUISetState(@SW_SHOW)
 #EndRegion ### END Koda GUI section ###
 

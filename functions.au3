@@ -9,11 +9,6 @@
 #include <Array.au3>
 #include <MsgBoxConstants.au3>
 #include <SecurityConstants.au3>
-#include <WinAPIError.au3>
-#include <WinAPIFiles.au3>
-#include <WinAPIHObj.au3>
-#include <WinAPIProc.au3>
-#include <WinAPISys.au3>
 
 #include "_GetReparseTarget.au3"
 
@@ -40,7 +35,7 @@ Func getComMojangDir()
 	Local $fileList = _FileListToArray(@AppDataDir & "\Minecraft Bedrock\Users")
 	If $fileList[0] = 2 Then
 	Else
-		MsgBox(0, $gui_title, "Error - incorrect number of files")
+		MsgBox(0, $gui_title, "Multiple Minecraft accounts found!" & @CRLF & "Please delete any files from left over profiles and try again. Multi-account support coming soon.")
 		Return
 	EndIf
 	Return @AppDataDir & "\Minecraft Bedrock\Users\" & $fileList[1] & "\games"
