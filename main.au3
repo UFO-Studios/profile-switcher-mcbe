@@ -59,6 +59,9 @@ While 1
 		Case $gui_selectProfileBtn
 			loadProfile()
 
+		Case $gui_importDefaultProfile
+			importProfile()
+
 		Case $gui_launchMinecraftBtn
 			launchMinecraft()
 

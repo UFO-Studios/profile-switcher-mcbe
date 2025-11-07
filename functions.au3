@@ -43,14 +43,13 @@ EndFunc   ;==>getComMojangDir
 
 Func loadProfile()
 	Local $selectedProfile = GUICtrlRead($gui_profileList)
-	
+
 	If $selectedProfile = $loadedProfile Then ; Check if profile is already loaded
-		$confirm = MsgBox(1, $gui_title, "That profile is already loaded. Would you like to reload it?") 
+		$confirm = MsgBox(1, $gui_title, "That profile is already loaded. Would you like to reload it?")
 		If $confirm = 2 Then
 			Return
 		EndIf
 	EndIf
-		
 
 	disableGUI()
 
@@ -81,8 +80,38 @@ Func loadProfile()
 	IniWrite("data.ini", "Data", "loadedProfileDir", $loadedProfileDir)
 
 	enableGUI()
-GUICtrlSetData($gui_loadedProfileLabel, "Loaded Profile: " & $loadedProfile)
+	GUICtrlSetData($gui_loadedProfileLabel, "Loaded Profile: " & $loadedProfile)
 EndFunc   ;==>loadProfile
+
+Func importProfile()
+	disableGUI()
+	Local $imported = 0 ; Not yet imported
+	Local $imported_packs = 0 ; Not yet imported packs
+
+	If FileExists($comMojang & "\com.mojang_default") = True Then ; Symlink has already been created and default folder renamed
+		DirCopy($comMojang & "\com.mojang_default", $profileFolder & "\com.mojang_default", 1) ; Move to profiles folder
+		$imported = 1
+	EndIf
+	If FileExists($comMojang_packs & "\com.mojang_default") = True Then ; Symlink has already been created and default folder renamed
+		DirCopy($comMojang_packs & "\com.mojang_default", $profileFolder & "\com.mojang_default", 1) ; Move to profiles folder
+		$imported_packs = 1
+	EndIf
+
+	If FileExists($comMojang & "\com.mojang") Then
+		If checkSymLink($comMojang & "\com.mojang") = False Then ; Symlink has not been created
+			DirCopy($comMojang & "\com.mojang", $profileFolder & "\com.mojang", 1)
+			$imported = 1
+		EndIf
+	EndIf
+
+		If FileExists($comMojang_packs & "\com.mojang") Then
+		If checkSymLink($comMojang_packs & "\com.mojang") = False Then ; Symlink has not been created
+			DirCopy($comMojang_packs & "\com.mojang", $profileFolder & "\com.mojang", 1)
+			$imported = 1
+		EndIf
+	EndIf
+	enableGUI()
+EndFunc   ;==>importProfile
 
 Func checkLoadedProfile() ; Not working yet. Doesn't seem to be disabling the GUI when running in AdLib.
 	$selectedProfile = GUICtrlRead($gui_profileList)
@@ -93,7 +122,7 @@ Func checkLoadedProfile() ; Not working yet. Doesn't seem to be disabling the GU
 	Else
 		GUISetState($gui_selectProfileBtn, $GUI_ENABLE)
 	EndIf
-EndFunc
+EndFunc   ;==>checkLoadedProfile
 
 Func launchMinecraft()
 	disableGUI()
@@ -103,7 +132,7 @@ Func launchMinecraft()
 EndFunc   ;==>launchMinecraft
 
 Func getMinecraftFilePath($preview) ; Search all the drives to find Minecraft installation
-Local $filePath = ""
+	Local $filePath = ""
 
 	If $preview = 1 Then
 		$filePath = "XboxGames\Minecraft for Windows\Content\Minecraft.Windows.exe"
@@ -135,14 +164,14 @@ Func disableGUI()
 	GUICtrlSetState($gui_selectProfileBtn, $GUI_DISABLE)
 	GUICtrlSetState($gui_launchMinecraftBtn, $GUI_DISABLE)
 	GUICtrlSetState($gui_importDefaultProfile, $GUI_DISABLE)
-EndFunc
+EndFunc   ;==>disableGUI
 
 Func enableGUI()
-		GUICtrlSetState($gui_profileList, $GUI_ENABLE)
+	GUICtrlSetState($gui_profileList, $GUI_ENABLE)
 	GUICtrlSetState($gui_selectProfileBtn, $GUI_ENABLE)
 	GUICtrlSetState($gui_launchMinecraftBtn, $GUI_ENABLE)
 	GUICtrlSetState($gui_importDefaultProfile, $GUI_ENABLE)
-EndFunc
+EndFunc   ;==>enableGUI
 
 ; Parameter(s):     $qLink              = The file or directory you want to create.
 ;                   $qTarget            = The location $qLink should link to.
