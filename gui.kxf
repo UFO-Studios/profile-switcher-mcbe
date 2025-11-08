@@ -3,8 +3,8 @@
 	<properties>
 		<property name="Left" vt="Int16">1030</property>
 		<property name="Top" vt="Int16">696</property>
-		<property name="Width" vt="Int16">385</property>
-		<property name="Height" vt="Int16">176</property>
+		<property name="Width" vt="Int16">449</property>
+		<property name="Height" vt="Int16">214</property>
 		<property name="Caption" vt="String">&quot; &amp; $gui_title &amp; &quot;</property>
 		<property name="Color" vt="Ident">clBtnFace</property>
 		<property name="Font.Charset" vt="Ident">DEFAULT_CHARSET</property>
@@ -34,7 +34,7 @@
 			<properties>
 				<property name="Left" vt="Int8">16</property>
 				<property name="Top" vt="Int8">32</property>
-				<property name="Width" vt="Int16">337</property>
+				<property name="Width" vt="Int16">401</property>
 				<property name="Height" vt="Int8">25</property>
 				<property name="ItemHeight" vt="Int8">13</property>
 				<property name="TabOrder" vt="Int8">0</property>
@@ -47,7 +47,7 @@
 		<object type="TAButton" name="gui_selectProfileBtn">
 			<properties>
 				<property name="Left" vt="Int8">16</property>
-				<property name="Top" vt="Int8">72</property>
+				<property name="Top" vt="Int8">64</property>
 				<property name="Width" vt="Int8">75</property>
 				<property name="Height" vt="Int8">25</property>
 				<property name="Caption" vt="String">Select Profile</property>
@@ -61,8 +61,8 @@
 		</object>
 		<object type="TAButton" name="gui_launchMinecraftBtn">
 			<properties>
-				<property name="Left" vt="Int16">264</property>
-				<property name="Top" vt="Int8">72</property>
+				<property name="Left" vt="Int16">328</property>
+				<property name="Top" vt="Int8">64</property>
 				<property name="Width" vt="Int8">91</property>
 				<property name="Height" vt="Int8">25</property>
 				<property name="Caption" vt="String">Launch Minecraft</property>
@@ -77,7 +77,7 @@
 		<object type="TAButton" name="gui_importDefaultProfile">
 			<properties>
 				<property name="Left" vt="Int8">96</property>
-				<property name="Top" vt="Int8">72</property>
+				<property name="Top" vt="Int8">64</property>
 				<property name="Width" vt="Int8">107</property>
 				<property name="Height" vt="Int8">25</property>
 				<property name="Caption" vt="String">Import Default Profile</property>
@@ -91,8 +91,8 @@
 		</object>
 		<object type="TALabel" name="gui_VersionNumLabel">
 			<properties>
-				<property name="Left" vt="Int16">216</property>
-				<property name="Top" vt="Int8">112</property>
+				<property name="Left" vt="Int16">280</property>
+				<property name="Top" vt="Int16">152</property>
 				<property name="Width" vt="Int16">141</property>
 				<property name="Height" vt="Int8">17</property>
 				<property name="Caption" vt="String">Version: &quot; &amp; $versionNum &amp; &quot;</property>
@@ -107,8 +107,8 @@
 		<object type="TALabel" name="gui_copyright">
 			<properties>
 				<property name="Left" vt="Int8">16</property>
-				<property name="Top" vt="Int8">112</property>
-				<property name="Width" vt="Int8">119</property>
+				<property name="Top" vt="Int16">152</property>
+				<property name="Width" vt="Int16">183</property>
 				<property name="Height" vt="Int8">17</property>
 				<property name="Caption" vt="String">&quot; &amp; $copyright &amp; &quot;</property>
 				<property name="TabOrder" vt="Int8">5</property>
@@ -131,6 +131,21 @@
 				<property name="CtrlStyle" vt="Int32">1342308608</property>
 				<property name="CtrlExStyle" vt="Int8">0</property>
 				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="gui_checkForUpdatesBtn">
+			<properties>
+				<property name="Left" vt="Int16">312</property>
+				<property name="Top" vt="Int8">120</property>
+				<property name="Width" vt="Int8">107</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Caption" vt="String">Check for Updates</property>
+				<property name="TabOrder" vt="Int8">7</property>
+				<property name="Color" vt="Ident">clBtnFace</property>
+				<property name="CtrlStyle" vt="Int32">1342373888</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set">DockWidth, DockHeight</property>
 			</properties>
 			<components/>
 		</object>

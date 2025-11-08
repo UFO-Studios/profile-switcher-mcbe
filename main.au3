@@ -10,6 +10,7 @@
 
 #RequireAdmin
 #include "functions.au3"
+#include "checkForUpdates.au3"
 
 ; Compile Settings
 #pragma compile(Compatibility, XP, vista, win7, win8, win81, win10, win11)
@@ -23,6 +24,7 @@
 
 ; Variables
 Global $versionNum = "B0.1.0"
+Global $updateNum = "010" ; For update checker
 Global $copyright = "© UFO Studios 2025"
 Global $gui_title = "Alien's MCBE Profile Switcher - " & $versionNum
 
@@ -35,22 +37,24 @@ Global $comMojang = getComMojangDir()
 
 ; GUI
 ; Copy paste below so GUI starts centered, because Koda doesn't let us do it automatically :(
-; Global $gui = GUICreate("" & $gui_title & "", 370, 138)
+; Global $gui = GUICreate("" & $gui_title & "", 434, 176)
 #Region ### START Koda GUI section ### Form=d:\06 code\profile-switcher-mcbe\gui.kxf
-Global $gui = GUICreate("" & $gui_title & "", 370, 138)
-Global $gui_profileList = GUICtrlCreateCombo("", 16, 32, 337, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-Global $gui_selectProfileBtn = GUICtrlCreateButton("Select Profile", 16, 72, 75, 25)
-Global $gui_launchMinecraftBtn = GUICtrlCreateButton("Launch Minecraft", 264, 72, 91, 25)
-Global $gui_importDefaultProfile = GUICtrlCreateButton("Import Default Profile", 96, 72, 107, 25)
-Global $gui_VersionNumLabel = GUICtrlCreateLabel("Version: " & $versionNum & "", 216, 112, 141, 17, $SS_RIGHT)
-Global $gui_copyright = GUICtrlCreateLabel("" & $copyright & "", 16, 112, 119, 17)
+Global $gui = GUICreate("" & $gui_title & "", 434, 176)
+Global $gui_profileList = GUICtrlCreateCombo("", 16, 32, 401, 25, BitOR($CBS_DROPDOWNLIST,$CBS_AUTOHSCROLL))
+Global $gui_selectProfileBtn = GUICtrlCreateButton("Select Profile", 16, 64, 75, 25)
+Global $gui_launchMinecraftBtn = GUICtrlCreateButton("Launch Minecraft", 328, 64, 91, 25)
+Global $gui_importDefaultProfile = GUICtrlCreateButton("Import Default Profile", 96, 64, 107, 25)
+Global $gui_VersionNumLabel = GUICtrlCreateLabel("Version: " & $versionNum & "", 280, 152, 141, 17, $SS_RIGHT)
+Global $gui_copyright = GUICtrlCreateLabel("" & $copyright & "", 16, 152, 183, 17)
 Global $gui_loadedProfileLabel = GUICtrlCreateLabel("Loaded Profile: " & $loadedProfile & "", 16, 8, 179, 17)
+Global $gui_checkForUpdatesBtn = GUICtrlCreateButton("Check for Updates", 312, 120, 107, 25)
 GUISetState(@SW_SHOW)
 #EndRegion ### END Koda GUI section ###
 
 ; Script Start
 
 getProfiles()
+checkForUpdates(0)
 
 While 1
 	$nMsg = GUIGetMsg()
@@ -64,6 +68,9 @@ While 1
 
 		Case $gui_launchMinecraftBtn
 			launchMinecraft()
+
+		Case $gui_checkForUpdatesBtn
+			checkForUpdates(1)
 
 		Case $GUI_EVENT_CLOSE
 			Exit
