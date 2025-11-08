@@ -111,6 +111,13 @@ Func importProfile()
 		EndIf
 	EndIf
 	enableGUI()
+
+	If $imported = 0 Then
+		MsgBox(0, $gui_title, "Could not find a com.mojang folder to import")
+	EndIf
+		If $imported_packs = 0 Then
+		MsgBox(0, $gui_title, "Could not find a com.mojang (packs) folder to import")
+	EndIf
 EndFunc   ;==>importProfile
 
 Func checkLoadedProfile() ; Not working yet. Doesn't seem to be disabling the GUI when running in AdLib.
